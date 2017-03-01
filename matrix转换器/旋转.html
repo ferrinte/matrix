@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>matrix变换---旋转</title>
+	<style type="text/css">
+	  body{
+	  	background-color: #eee;
+	  }
+	  p{
+	  	color: #666;
+	  	margin-left: 50px;
+	  	padding: 10px;
+	  	border-bottom: 1px dashed #aaa;
+
+	  }
+	  input{
+	  	height: 18px;
+	  	border-radius: 3px;
+	  	border: none;
+	    outline-color: orange;
+      padding-left: 10px;
+	  }
+	  #wrap{
+	  	width: 500px;
+	  	height: 400px;
+	  	margin:  100px auto;
+	  	padding: 30px;
+	  	/* background-color: #333; */
+	  	border: 1px solid #ccc;
+	  	border-radius: 10px;
+	  	position: relative;
+	  }
+		.matrix_box {
+    width: 180px;
+    height: 180px;
+    line-height: 180px;
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    font-size: 80px;
+    text-align:center;
+    color: orange;
+    text-shadow:1px 1px #fff;
+    position: absolute;
+    top:200px;
+    left: 0;
+    right: 0;
+    margin: auto; 
+}
+	</style>
+</head>
+<body>
+  <div id="wrap">
+    <p id="matrixDetail">当前属性值：matrix(1,0,0,1,0,0)</p>
+    <p>输入旋转角度(0~360度)：
+       <input type="text" id="matrixRotate" placeholder="请输入旋转角度" min="0" max="360"  autocomplete="off" autofocus="true" />
+    </p>
+    <div id="matrixBox" class="matrix_box">↑</div>
+  </div>
+
+</body>
+</html>
+<script type="text/javascript">
+	(function() {
+   var $ = function(selector) {
+      return document.querySelector(selector);
+   };
+   var $css3Transform = function(element, value) {
+		var arrPriex = ["O", "Ms", "Moz", "Webkit", ""], length = arrPriex.length;
+		for (var i=0; i < length; i+=1) {
+			element.style[arrPriex[i] + "Transform"] = value;
+		}
+   };
+   var eleDetail = $("#matrixDetail"),
+       eleRotate = $("#matrixRotate"),
+       eleBox = $("#matrixBox");
+   
+   if (eleDetail && eleRotate && eleBox) {
+      eleRotate.addEventListener("change", function() {
+         var maxVal = this.getAttribute("max");
+         var minVal = this.getAttribute("min");
+         var value = this.value;
+         if (value < minVal) {
+            value = minVal;
+            this.value = minVal;
+         }
+         if (value > maxVal) {
+            value = maxVal;
+            this.value = maxVal;
+         }
+         var cosVal = Math.cos(this.value * Math.PI / 180), sinVal = Math.sin(this.value * Math.PI / 180);
+         var valTransform = 'matrix('+ cosVal.toFixed(3) +','+ sinVal.toFixed(3) +','+ (-1 * sinVal).toFixed(3) +','+ cosVal.toFixed(3) +',0,0)'
+         eleDetail.innerHTML = '目前属性值为：' + valTransform;
+         $css3Transform(eleBox, valTransform);
+      });   
+   }	
+})();
+</script>
