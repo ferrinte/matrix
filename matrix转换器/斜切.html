@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>matrix变换---斜切</title>
+	<script type="text/javascript" src="./js/skew.js"></script>
+	<style type="text/css">
+	  body{
+	  	background-color: #eee;
+	  }
+	  p{
+	  	color: #666;
+	  	margin-left: 50px;
+	  	padding: 10px;
+	  	border-bottom: 1px dashed #aaa;
+
+	  }
+	  input{
+	  	height: 18px;
+	  	border-radius: 3px;
+	  	border: none;
+	    outline-color: orange;
+      padding-left: 10px;
+	  }
+	  #wrap{
+	  	width: 500px;
+	  	height: 400px;
+	  	margin:  100px auto;
+	  	padding: 30px;
+	  	/* background-color: #333; */
+	  	border: 1px solid #ccc;
+	  	border-radius: 10px;
+	  	position: relative;
+	  }
+		.matrix_box {
+    width: 180px;
+    height: 180px;
+    line-height: 180px;
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    font-size: 80px;
+    text-align:center;
+    color: orange;
+    text-shadow:1px 1px #fff;
+    position: absolute;
+    top:250px;
+    left: 0;
+    right: 0;
+    margin: auto; 
+}
+	</style>
+</head>
+<body>
+<div id="wrap">
+		<p id="matrixDetail">当前属性值：matrix(1,0,0,1,0,0)</p>
+    <p>x轴倾斜角度(0-89度)：<input type="range" id="matrixSkewX" value="0" min="0"     max="89" autocomplete="off" /></p>
+    <p>y轴倾斜角度(0-89度)：<input type="range" id="matrixSkewY" value="0" min="0"     max="89" autocomplete="off" /></p>
+    <div id="matrixBox" class="matrix_box"></div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+
+</script>
